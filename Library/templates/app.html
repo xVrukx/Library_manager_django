@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% csrf_token %}
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Library Manager</title>
+    <style>
+.custom-btn {
+  background-color: #000000 !important;
+  color: #fffbfb !important;
+  border: 1px solid #999999 !important;
+
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1) !important; /* soft like input */
+  transition: all 0.3s ease; /* smooth transitions */
+}
+.position-right {
+    position:absolute;
+    top: 20px;
+    left: 1px;
+}
+
+.custom-btn:hover {
+  background-color: #686868 !important;
+  color: #ffffff !important; /* invert text color */
+  cursor: pointer !important;
+}
+.custom-btn-2 {
+  background-color: #000000 !important;
+  color: #fffbfb !important;
+  border: 1px solid #999999 !important;
+
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1) !important; /* soft like input */
+  transition: all 0.3s ease; /* smooth transitions */
+}
+.position-right-2 {
+    position:absolute;
+    top: 80px;
+    left: 1px;
+}
+
+.custom-btn-2:hover {
+  background-color: #686868 !important;
+  color: #ffffff !important; /* invert text color */
+  cursor: pointer !important;
+}
+
+.custom-btn-3 {
+  background-color: #000000 !important;
+  color: #fffbfb !important;
+  border: 1px solid #999999 !important;
+
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1) !important; /* soft like input */
+  transition: all 0.3s ease; /* smooth transitions */
+}
+.position-right-3 {
+    position:absolute;
+    top: 140px;
+    left: 1px;
+}
+
+.custom-btn-3:hover {
+  background-color: #686868 !important;
+  color: #ffffff !important; /* invert text color */
+  cursor: pointer !important;
+}
+
+.custom-btn-4 {
+  background-color: #33ff00 !important;
+  color: #fffbfb !important;
+  border: 1px solid #999999 !important;
+
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1) !important; /* soft like input */
+  transition: all 0.3s ease; /* smooth transitions */
+}
+.position-right-4 {
+    position:absolute;
+    top: 200px;
+    left: 1px;
+}
+
+.custom-btn-4:hover {
+  background-color: #686868 !important;
+  color: #ffffff !important; /* invert text color */
+  cursor: pointer !important;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+input {
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+/* Sidebar */
+.sidebar {
+    height: 100vh;
+    width: 250px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #212529;
+    padding-top: 20px;
+}
+.sidebar h4 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.sidebar a {
+    display: block;
+    color: #ddd;
+    padding: 12px 20px;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+.sidebar a:hover {
+    background-color: #343a40;
+    color: #fff;
+}
+
+/* Main content */
+.content {
+    margin-left: 260px;
+    padding: 20px;
+}
+
+/* Cards */
+.stat-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+/* Tables */
+.table-container {
+    margin-top: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.modal .form-label {
+    font-weight: 600;
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+        <!-- Profile  -->
+    <button type="button" class="btn custom-btn position-right" data-bs-toggle="modal" data-bs-target="#profile">
+    Profile edit
+    </button>
+
+    <!-- Modal of boot strap for profile -->
+    <div class="modal fade" id="profile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="profile">Profile</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <label for = "username">Username:</label><br>
+            <input type="text" id = "username" name="username" value="{{ username }}"><br>
+
+            <label for ="email">Email:</label><br>
+            <input type="email" id = "email" name="email" value="{{ email }}"><br>
+
+            <label for = "password">Password:</label><br>
+            <input type="password" id = "password" name="password" value="{{ password }}"><br>
+
+            <label for ="number">Number:</label><br>
+            <input type="text" id = "number" name="number" value="{{ number }}"><br>
+
+                    <div class="modal-footer">
+            <button type="button" class="btn custom-btn" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn custom-btn">Save changes</button>
+                    </div>
+        </form>
+        </div>
+    </div>
+
+    </div>
+
+  <!--Member-->
+
+    <button type="button" class="btn custom-btn position-right-2" data-bs-toggle="modal" data-bs-target="#memberModel">
+    Members
+    </button>
+
+    <!-- Modal of boot strap for profile -->
+    <div class="modal fade" id="memberModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+      <form method="POST" action="{% url 'add_member' %}">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title">Add Member</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <label>Name:</label>
+          <input type="text" class="form-control" name="name" required>
+                <table class="table table-dark table-borderless">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Member</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {% for member in members %}
+        <tr>
+          <td>{{ member.id }}</td>
+          <td>{{ member.name }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn custom-btn">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Borrow & Return Button -->
+<button type="button" class="btn custom-btn-3 position-right-3" data-bs-toggle="modal" data-bs-target="#borrowReturnModal">
+    Borrow & Return
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="borrowReturnModal" tabindex="-1" aria-labelledby="borrowReturnModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form method="POST" action="{% url 'borrow_and_return' %}">
+      {% csrf_token %}
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="borrowReturnModalLabel">Borrow & Return</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="memberSelect" class="form-label">Select Member</label>
+            <select class="form-select" id="memberSelect" name="member_id" required>
+              {% for member in members %}
+                <option value="{{ member.id }}">{{ member.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="bookSelect" class="form-label">Select Book</label>
+            <select class="form-select" id="bookSelect" name="book_id" required>
+              {% for book in books %}
+                <option value="{{ book.id }}">{{ book.title }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" name="action" value="return" class="btn custom-btn">Return</button>
+          <button type="submit" name="action" value="borrow" class="btn custom-btn">Borrow</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- books-->
+
+<button type="button" class="btn custom-btn-4 position-right-4" data-bs-toggle="modal" data-bs-target="#bookModal">
+  Add books
+</button>
+
+<div class="modal fade" id="bookModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form method="POST" action="{% url 'add_book' %}">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title">Add Book</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <label>Title:</label>
+          <input type="text" name="title" class="form-control" required>
+          <label>Author:</label>
+          <input type="text" name="author" class="form-control" required>
+          <label>Quantity:</label>
+          <input type="number" name="quantity" class="form-control" required>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn custom-btn">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+    <!--Table of books available-->
+<div class="content">
+  <h1 class=" mb-4">Welcome {{username}}</h1>
+
+
+  <div class="row mb-4">
+    <div class="col-md-4">
+        <div class="stat-card">
+          <h5>Total books</h5>
+          <h2>{{books| length}}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="stat-card">
+        <h5>Total members</h5>
+        <h2>{{members|length}}</h2>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="stat-card">
+        <h5>Total Borrowed books</h5>
+        <h2>{{borrowed| length}}</h2>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="table-container">
+    <table class="table table-dark  table-bordered table-striped table-hover ">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Book</th>
+          <th>Author</th>
+          <th>Publish Date</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for book in books %}
+        <tr>
+          <td>{{ book.id }}</td>
+          <td>{{ book.title }}</td>
+          <td>{{ book.author }}</td>
+          <td>{{ book.publish_date }}</td>
+          <td>{{ book.quantity }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    </div>
+  </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </body>
+</html>
