@@ -62,12 +62,12 @@ python manage.py createsuperuser
 python manage.py runserver
 Visit http://127.0.0.1:8000/ in your browser.
 
-🔑 Default URLs
-Library Dashboard: /Library
+Images of deno
+<img width="1366" height="768" alt="Screenshot (210)" src="https://github.com/user-attachments/assets/f961ffb5-9418-4a5d-bf93-af5d8e215262" />
+<img width="1366" height="768" alt="Screenshot (212)" src="https://github.com/user-attachments/assets/ed8b1a1e-605e-4361-863c-1314b4e19c7d" />
+<img width="1366" height="768" alt="Screenshot (211)" src="https://github.com/user-attachments/assets/e95fdaf0-86ec-4ad2-a392-ec1f514e5207" />
 
-Admin Panel: /admin
-<img width="1366" height="768" alt="Screenshot (202)" src="https://github.com/user-attachments/assets/0932ecc4-a85f-4703-8ad1-7a3229d00686" />
-<img width="1366" height="768" alt="Screenshot (201)" src="https://github.com/user-attachments/assets/42a43508-315c-4813-a776-317d762fea46" />
+
 
 🤝 Contributing
 Pull requests are welcome! For major changes, please open an issue first to discuss.
